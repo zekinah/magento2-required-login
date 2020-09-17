@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <requirelogin>
+            <general>
+                <enable>1</enable>
+            </general>
+            <pageexception>
+                <target_url_redirect>/customer/account/login/</target_url_redirect>
+                <select_test>1</select_test>
+                <select_pageexception></select_pageexception>
+            </pageexception>
+            <notification>
+                <warning_message>Kindly login to your account before proceeding.</warning_message>
+            </notification>
+        </requirelogin>
+    </default>
+</config>
