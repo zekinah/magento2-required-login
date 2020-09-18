@@ -6,9 +6,8 @@
                 <enable>1</enable>
             </general>
             <pageexception>
-                <target_url_redirect>/customer/account/login/</target_url_redirect>
-                <select_test>1</select_test>
-                <select_pageexception></select_pageexception>
+                <target_url_redirect>customer/account/login</target_url_redirect>
+                <select_whitelist></select_whitelist>
             </pageexception>
             <notification>
                 <warning_message>Kindly login to your account before proceeding.</warning_message>

@@ -2,24 +2,29 @@
 
 namespace Zone\RequireLogin\Controller\Index;
 
+use Magento\Framework\App\Action\Context;
+use Zone\RequireLogin\Helper\Data;
+
 class Config extends \Magento\Framework\App\Action\Action
 {
 
-	protected $helperData;
+	protected $data;
 
 	public function __construct(
-		\Magento\Framework\App\Action\Context $context,
-		\Zone\RequireLogin\Helper\Data $helperData
+		Context $context,
+		Data $data
 
-	)
-	{
-		$this->helperData = $helperData;
+	) {
+		$this->data = $data;
 		return parent::__construct($context);
 	}
 
 	public function execute()
 	{
-		echo $this->helperData->getGeneralConfig('enable');
+		echo $this->data->getGeneralConfig('enable');
+		echo $this->data->getPageExeception('target_url_redirect');
+		// echo $this->helperData->getPageExeception('select_whitelist');
+		echo $this->data->getNotificationExeception('warning_message');
 		exit();
 
 	}

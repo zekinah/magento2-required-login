@@ -6,7 +6,7 @@
         </tab>
         <section id="requirelogin" translate="label" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="1">
             <class>separator-top</class>
-            <label>Force Login</label>
+            <label>Customer Required Login</label>
             <tab>zone</tab>
             <resource>Zone_RequireLogin::requirelogin_config</resource>
             <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
@@ -20,15 +20,16 @@
                 <label>Configuration</label>
                 <field id="target_url_redirect" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Base Target URL</label>
+                    <comment>This is the default url of login</comment>
                 </field>
-                <field id="select_pageexception" name="multiselect_example" type="multiselect" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                <field id="select_whitelist" type="multiselect" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>White List Pages</label>
                     <source_model>Magento\Cms\Model\Config\Source\Page</source_model>
                 </field>
             </group>
             <group id="notification" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="0" showInStore="0">
                 <label>Warning Message</label>
-                <field id="warning_message" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                <field id="warning_message" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
                     <label>Warning Message</label>
                     <comment>Output when the direct access was triggered.</comment>
                 </field>

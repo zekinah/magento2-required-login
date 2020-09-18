@@ -1,14 +1,11 @@
 <?php
-/*
- * Copyright © 2020 Zekinah Lecaros. All rights reserved.
- * zjlecaros@gmail.com
- */
 namespace Zone\RequireLogin\Helper;
 
 use Magento\Framework\App\Helper\AbstractHelper;
 use Magento\Store\Model\ScopeInterface;
 use Magento\Framework\App\Request\Http;
 use Magento\Store\Model\StoreManagerInterface;
+use Psr\Log\LoggerInterface;
 
 class Data extends AbstractHelper
 {
@@ -19,6 +16,8 @@ class Data extends AbstractHelper
 
     private $adminSession;
 
+    private $logger;
+
     private $httpContext;
 
     private $request;
@@ -28,12 +27,14 @@ class Data extends AbstractHelper
     public function __construct(
         Http $request,
         StoreManagerInterface $storeManager,
+        LoggerInterface $logger,
         \Magento\Customer\Model\Session $customerSession,
         \Magento\Backend\Model\Auth\Session $adminSession,
         \Magento\Framework\App\Helper\Context $context,
         \Magento\Framework\App\Http\Context $httpContext
     ) {
         $this->request = $request;
+        $this->logger = $logger;
         $this->customerSession = $customerSession;
         $this->adminSession = $adminSession;
         $this->httpContext = $httpContext;
@@ -65,8 +66,9 @@ class Data extends AbstractHelper
     }
 
     public function getEnable() {
-        if($this->getGeneralConfig('enable')) {
-            return true;
+        $enable = $this->getGeneralConfig('enable');
+        if($enable) {
+            return $enable;
         }
     }
 
@@ -78,20 +80,24 @@ class Data extends AbstractHelper
     }
 
     public function getWhitelisted() {
-        $page_exception = $this->getPageExeception('select_pageexception');
-        $default_exception = [
+        $selected_whitelisted = $this->getPageExeception('select_whitelist');
+        $default_whitelisted = [
             'adminhtml_auth_login',
             'customer_account_login',
             'customer_account_logoutSuccess',
             'customer_account_create',
             'customer_account_index',
             'customer_account_forgotpassword',
-            'customer_account_forgotpasswordpost'
+            'customer_account_forgotpasswordpost',
+            'customer_account_createpost',
+            'customer_account_loginPost',
+            'customer_section_load'
         ];
-        $whitelisted = array_merge($page_exception, $default_exception);
-        if($whitelisted) {
+        if (is_array($selected_whitelisted) || is_object($selected_whitelisted)) {
+            $whitelisted = array_merge($selected_whitelisted, $default_whitelisted);
             return $whitelisted;
         }
+        return $default_whitelisted;
     }
 
     public function getWarningMessage() {
@@ -103,8 +109,8 @@ class Data extends AbstractHelper
 
 
     public function checkCustomerlogin() {
-        $isLoggedIn = $this->httpContext->getValue(\Magento\Customer\Model\Context::CONTEXT_AUTH);
-        // $isLoggedIn =  $this->customerSession->isLoggedIn();
+        // $isLoggedIn = $this->httpContext->getValue(\Magento\Customer\Model\Context::CONTEXT_AUTH);
+        $isLoggedIn =  $this->customerSession->isLoggedIn();
         if($isLoggedIn) {
             return true;
         }
@@ -119,16 +125,15 @@ class Data extends AbstractHelper
         return false;
     }
 
+
     public function getProcessAction() {
         $currentAction = $this->request->getFullActionName();
         $whiteListed = $this->getWhitelisted();
-        $currentUrl = $this->getCurrentUrl();
-        $defaultTargetUrl = $this->getTargetUrl();
-        if (!in_array($currentAction, $whiteListed) && ($currentUrl != $defaultTargetUrl)) {
+        if (in_array($currentAction, $whiteListed)) {
+            return true;
+        } else {
             $this->logger->notice('Zone_RequireLogin Blocked :' . $currentAction);
             return false;
-        } else {
-            return true;
         }
     }
 }
