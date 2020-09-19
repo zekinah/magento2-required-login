@@ -6,16 +6,16 @@
 
 ## Installation
 
-Copy the content of the repo to the app/code/Zone/RequireLogin/ folder
+Copy the content of the repo to the app/code/Zone/RequiredLogin/ folder
 
 Enable module:
 ```
-php bin/magento module:enable Zone_RequireLogin
+php bin/magento module:enable Zone_RequiredLogin
 ```
 
 Disable module: (Optional)
 ```
-php bin/magento module:disable Zone_RequireLogin --clear-static-content
+php bin/magento module:disable Zone_RequiredLogin --clear-static-content
 ```
 
 Update system:

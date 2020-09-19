@@ -1,8 +1,5 @@
 <?php
-/*
- * Copyright © 2020 Zekinah Lecaros. All rights reserved.
- * zjlecaros@gmail.com
- */
+
 namespace Zone\RequireLogin\Observer;
 
 use Magento\Framework\Event\Observer;
@@ -11,15 +8,15 @@ use Magento\Framework\App\ResponseFactory;
 use Magento\Framework\App\Response\Http;
 use Magento\Framework\UrlInterface;
 use Magento\Framework\Message\ManagerInterface;
-use Zone\RequireLogin\Helper\Data;
+use Zone\RequiredLogin\Helper\Data;
 
-class CheckRequireLogin implements ObserverInterface
+class CheckRequiredLogin implements ObserverInterface
 {
-	protected $_messageManager;
+	protected $messageManager;
 
-	protected $_url;
+	protected $url;
 
-	protected $_responseFactory;
+	protected $responseFactory;
 
 	protected $data;
 	
@@ -29,9 +26,9 @@ class CheckRequireLogin implements ObserverInterface
 		ManagerInterface $messageManager,
 		ResponseFactory $responseFactory
 	) {
-		$this->_messageManager = $messageManager;
-		$this->_url = $url;
-		$this->_responseFactory = $responseFactory;
+		$this->messageManager = $messageManager;
+		$this->url = $url;
+		$this->responseFactory = $responseFactory;
 		$this->data = $data;
 	}
 
@@ -52,9 +49,9 @@ class CheckRequireLogin implements ObserverInterface
 			if($isActionLogin) {
     			return $this;
 			}else{
-				$this->_messageManager->addWarningMessage($message);
-				$redirectionUrl = $this->_url->getUrl($targetUrl);
-        		$this->_responseFactory->create()->setRedirect($redirectionUrl)->sendResponse();
+				$this->messageManager->addWarningMessage($message);
+				$redirectionUrl = $this->url->getUrl($targetUrl);
+        		$this->responseFactory->create()->setRedirect($redirectionUrl)->sendResponse();
         		exit;	
 			}
 		}

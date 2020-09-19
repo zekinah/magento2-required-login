@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
     <event name="controller_action_predispatch">
-        <observer name="check_require_login" instance="Zone\RequireLogin\Observer\CheckRequireLogin" />
+        <observer name="check_required_login" instance="Zone\RequiredLogin\Observer\CheckRequiredLogin" />
     </event>
 </config>

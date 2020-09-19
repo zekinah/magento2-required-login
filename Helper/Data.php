@@ -1,5 +1,5 @@
 <?php
-namespace Zone\RequireLogin\Helper;
+namespace Zone\RequiredLogin\Helper;
 
 use Magento\Framework\App\Helper\AbstractHelper;
 use Magento\Store\Model\ScopeInterface;
@@ -10,7 +10,7 @@ use Psr\Log\LoggerInterface;
 class Data extends AbstractHelper
 {
 
-    const XML_PATH_RequireLogin = 'requirelogin/';
+    const XML_PATH_RequireLogin = 'requiredlogin/';
 
     private $customerSession;
 
@@ -81,6 +81,9 @@ class Data extends AbstractHelper
 
     public function getWhitelisted() {
         $selected_whitelisted = $this->getPageExeception('select_whitelist');
+        if($selected_whitelisted) {
+			$selected_whitelisted = explode(",",$selected_whitelisted);
+		}
         $default_whitelisted = [
             'adminhtml_auth_login',
             'customer_account_login',
@@ -95,6 +98,11 @@ class Data extends AbstractHelper
         ];
         if (is_array($selected_whitelisted) || is_object($selected_whitelisted)) {
             $whitelisted = array_merge($selected_whitelisted, $default_whitelisted);
+            foreach($selected_whitelisted as $key => $whitelist){
+				if ($whitelist == 'no-route') {
+					$selected_whitelisted[$key] = 'cms_noroute_index';
+				}
+			}
             return $whitelisted;
         }
         return $default_whitelisted;
@@ -132,7 +140,7 @@ class Data extends AbstractHelper
         if (in_array($currentAction, $whiteListed)) {
             return true;
         } else {
-            $this->logger->notice('Zone_RequireLogin Blocked :' . $currentAction);
+            $this->logger->notice('Zone_RequiredLogin Blocked :' . $currentAction);
             return false;
         }
     }
