@@ -42,9 +42,9 @@ php bin/magento cache:clean
 ```
 
 ## Debugging
-* To check the values setting
+* To check the values setting:
     * Disable the module through backend, and visit [yoursite.com]/requiredlogin/index/config
-* To check the page that the customers trying to access directly.
+* To check the page that the customers trying to access directly:
     * Go to var/log/ and open system.log and you will see, `Zone_RequiredLogin Blocked : [url]`
 
 ## Author
@@ -53,4 +53,4 @@ php bin/magento cache:clean
 
 ## License
 
-[MIT](http://opensource.org/licenses/MIT)
+[Open Software License (OSL 3.0)](https://github.com/zekinah/magento2-required-login/blob/master/LICENSE)
