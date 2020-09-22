@@ -14,16 +14,16 @@ __Backend__
     * Warning Message
         * Notification _(Output a notification when the direct access on the other page was triggered.)_
 
-__Default Whitelisted Pages__
+__Default Whitelisted Pages and Action__
 * Customer's Registration Page
 * Forgot Password Page
 * Administrator Login Page
-* Logout Redirection Page
+* Logout Redirection
 * Stripe Webhooks
 
 ## Installation
 
-Copy the content of the repo to the app/code/Zone/RequiredLogin/ folder
+Copy the content of the repository to the app/code/Zone/RequiredLogin/ folder
 
 Enable module:
 ```
