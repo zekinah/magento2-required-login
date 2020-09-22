@@ -94,7 +94,9 @@ class Data extends AbstractHelper
             'customer_account_forgotpasswordpost',
             'customer_account_createpost',
             'customer_account_loginPost',
-            'customer_section_load'
+            'customer_section_load',
+            'stripe_payments_admin_configure_webhooks',
+            'stripe_payments_webhooks_index',
         ];
         if (is_array($selected_whitelisted) || is_object($selected_whitelisted)) {
             $whitelisted = array_merge($selected_whitelisted, $default_whitelisted);

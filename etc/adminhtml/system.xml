@@ -23,7 +23,7 @@
                     <comment>This is the default url of login</comment>
                 </field>
                 <field id="select_whitelist" type="multiselect" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
-                    <label>White List Pages</label>
+                    <label>WhiteList Pages</label>
                     <source_model>Magento\Cms\Model\Config\Source\Page</source_model>
                     <can_be_empty>1</can_be_empty>
                 </field>

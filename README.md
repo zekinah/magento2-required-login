@@ -19,6 +19,7 @@ __Default Whitelisted Pages__
 * Forgot Password Page
 * Administrator Login Page
 * Logout Redirection Page
+* Stripe Webhooks
 
 ## Installation
 
