@@ -92,7 +92,7 @@ class Data extends AbstractHelper
             'customer_account_index',
             'customer_account_forgotpassword',
             'customer_account_forgotpasswordpost',
-            'customer_account_createpassword',
+            'customer_account_createPassword',
             'customer_account_resetpasswordpost',
             'customer_account_createpost',
             'customer_account_loginPost',
