@@ -1,4 +1,10 @@
 <?php
+/*
+ * This file is part of the Required Login module for Magento2.
+ *
+ * (c) zekinah
+ *
+ */
 namespace Zone\RequiredLogin\Helper;
 
 use Magento\Framework\App\Helper\AbstractHelper;

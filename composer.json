@@ -2,7 +2,7 @@
     "name": "zekinah/required-login",
     "description": "A Magento2 module that requires the customer to login first before accessing the whole site.",
     "type": "magento2-module",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "minimum-stability": "stable",
     "license": [
         "OSL-3.0"
