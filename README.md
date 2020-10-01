@@ -2,6 +2,8 @@
 
 This module requires the customer to login first before accessing the whole site.
 
+<img src="https://github.com/zekinah/magento2-required-login/blob/master/resources/ss_configuration.png" alt="zone_required_login_configuration" width="100%">
+
 ## Features
 
 __Backend__
